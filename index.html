@@ -12,8 +12,19 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			height: 100vh;
+			min-height: 100vh;
 			margin: 0;
+			padding: 40px 20px;
+			box-sizing: border-box;
+			overflow-x: hidden;
+		}
+
+		.card-wrapper {
+			position: relative;
+			width: 100%;
+			max-width: 400px;
+			display: flex;
+			justify-content: center;
 		}
 
 		.directory-card {
@@ -23,7 +34,8 @@
 			border-radius: 0;
 			box-shadow: 8px 8px 0px #000000;
 			width: 100%;
-			max-width: 400px;
+			position: relative;
+			z-index: 2;
 		}
 
 		h1 {
@@ -74,39 +86,130 @@
 			color: #333333;
 			margin-top: 4px;
 		}
+
+		/* Decorative Artsy Arrows */
+		.artsy-arrow {
+			position: absolute;
+			z-index: 3;
+			pointer-events: none;
+			filter: drop-shadow(3px 3px 0px rgba(0, 0, 0, 0.15));
+		}
+
+		.arrow-top-left {
+			top: -105px;
+			left: -150px;
+			width: 210px;
+			height: 180px;
+			animation: float-slow 4s ease-in-out infinite alternate;
+		}
+
+		.arrow-bottom-right {
+			bottom: -95px;
+			right: -150px;
+			width: 210px;
+			height: 180px;
+			animation: float-slow 4s ease-in-out infinite alternate-reverse;
+		}
+
+		.arrow-top-right {
+			top: -85px;
+			right: -135px;
+			width: 180px;
+			height: 150px;
+			animation: float-slow 3.5s ease-in-out infinite alternate;
+		}
+
+		@keyframes float-slow {
+			0% {
+				transform: translateY(0px) rotate(0deg);
+			}
+
+			100% {
+				transform: translateY(-8px) rotate(2deg);
+			}
+		}
+
+		/* Hide decoration on narrower screens to prevent horizontal scroll */
+		@media (max-width: 768px) {
+			.artsy-arrow {
+				display: none;
+			}
+		}
 	</style>
 </head>
 
 <body>
 
-	<div class="directory-card">
-		<h1>Connect with Me</h1>
+	<div class="card-wrapper">
 
-		<!-- Facebook -->
-		<div class="account-item">
-			<img src="assets/facebook_logo.webp" alt="Facebook" class="social-icon">
-			<div class="platform-info">
-				<span class="platform-name">Facebook</span>
-				<span class="credential-value">@mjcortejo27</span>
-			</div>
-		</div>
+		<!-- Artsy Arrow 1: Top Left pointing down-right towards the card -->
+		<svg class="artsy-arrow arrow-top-left" viewBox="0 0 140 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<!-- Handwritten text label -->
+			<text x="5" y="20" font-family="monospace" font-weight="bold" font-size="16" fill="#000"
+				transform="rotate(-8 5 20)">add me! ✨</text>
+			<!-- Curved swoop path -->
+			<path d="M 25 35 C 50 15, 100 25, 115 85" stroke="#000000" stroke-width="4.5" stroke-linecap="round"
+				fill="none" />
+			<!-- Arrowhead -->
+			<path d="M 95 70 L 115 85 L 118 62" stroke="#000000" stroke-width="4.5" stroke-linecap="round"
+				stroke-linejoin="round" fill="none" />
+			<!-- Decorative doodle dots -->
+			<circle cx="20" cy="40" r="2.5" fill="#000" />
+			<circle cx="14" cy="49" r="2" fill="#000" />
+		</svg>
 
-		<!-- GitHub -->
-		<div class="account-item">
-			<img src="assets/github_logo.webp" alt="GitHub" class="social-icon">
-			<div class="platform-info">
-				<span class="platform-name">GitHub</span>
-				<span class="credential-value">@mjcortejo</span>
-			</div>
-		</div>
+		<!-- Artsy Arrow 2: Top Right pointing down-left towards the card -->
+		<svg class="artsy-arrow arrow-top-right" viewBox="0 -12 120 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<text x="30" y="4" font-family="monospace" font-weight="bold" font-size="15" fill="#000"
+				transform="rotate(6 30 4)">hello! 👋</text>
+			<path d="M 95 34 C 80 18, 35 26, 20 72" stroke="#000000" stroke-width="4.5" stroke-linecap="round"
+				fill="none" />
+			<path d="M 10 54 L 20 72 L 36 60" stroke="#000000" stroke-width="4.5" stroke-linecap="round"
+				stroke-linejoin="round" fill="none" />
+		</svg>
 
-		<!-- LinkedIn -->
-		<div class="account-item">
-			<img src="assets/linkedin_logo.webp" alt="LinkedIn" class="social-icon">
-			<div class="platform-info">
-				<span class="platform-name">LinkedIn</span>
-				<span class="credential-value">/in/markjetc</span>
+		<!-- Artsy Arrow 3: Bottom Right pointing up-left towards the card -->
+		<svg class="artsy-arrow arrow-bottom-right" viewBox="0 0 140 120" fill="none"
+			xmlns="http://www.w3.org/2000/svg">
+			<path d="M 115 90 C 95 110, 40 95, 25 35" stroke="#000000" stroke-width="4.5" stroke-linecap="round"
+				fill="none" />
+			<!-- Arrowhead -->
+			<path d="M 14 52 L 25 35 L 40 44" stroke="#000000" stroke-width="4.5" stroke-linecap="round"
+				stroke-linejoin="round" fill="none" />
+			<text x="25" y="110" font-family="monospace" font-weight="bold" font-size="15" fill="#000"
+				transform="rotate(-4 25 110)">my socials! 🚀</text>
+		</svg>
+
+		<div class="directory-card">
+			<h1>Connect with Me</h1>
+
+			<!-- Facebook -->
+			<div class="account-item">
+				<img src="assets/facebook_logo.webp" alt="Facebook" class="social-icon">
+				<div class="platform-info">
+					<span class="platform-name">Facebook</span>
+					<span class="credential-value">@mjcortejo27</span>
+				</div>
 			</div>
+
+			<!-- GitHub -->
+			<div class="account-item">
+				<img src="assets/github_logo.webp" alt="GitHub" class="social-icon">
+				<div class="platform-info">
+					<span class="platform-name">GitHub</span>
+					<span class="credential-value">@mjcortejo</span>
+				</div>
+			</div>
+
+			<!-- LinkedIn -->
+			<div class="account-item">
+				<img src="assets/linkedin_logo.webp" alt="LinkedIn" class="social-icon">
+				<div class="platform-info">
+					<span class="platform-name">LinkedIn</span>
+					<span class="credential-value">/in/markjetc</span>
+				</div>
+			</div>
+
 		</div>
 
 	</div>
